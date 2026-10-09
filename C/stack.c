@@ -1,26 +1,64 @@
+
 #include <stdio.h>
 
-void push(int value){
-    if (top == capacity-1){
-        printf("stack is underlying storage is overfloe\n");
+#define CAPACITY 5
+
+int stack[CAPACITY];
+int top = -1;
+
+void push(int value)
+{
+    if (top == CAPACITY - 1)
+    {
+        printf("Stack overflow: storage is full\n");
         return;
     }
+
     top = top + 1;
-    array[top] = value;
+    stack[top] = value;
 }
 
-void pop{
-    if (top == -1){
-        printf("stack is empty storage is underflow\n");
-        return;
+int pop(void)
+{
+    if (top == -1)
+    {
+        printf("Stack underflow: stack is empty\n");
+        return -1;
     }
-    data = array[top];
+
+    int data = stack[top];
+    top = top - 1;
+
     return data;
 }
 
-int main()
+void display(void)
 {
-    printf("Hello World");
+    if (top == -1)
+    {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    printf("Stack elements (top to bottom):\n");
+
+    for (int i = top; i >= 0; i--)
+    {
+        printf("%d\n", stack[i]);
+    }
+}
+
+int main(void)
+{
+    push(10);
+    push(20);
+    push(30);
+
+    display();
+
+    printf("Popped element: %d\n", pop());
+
+    display();
 
     return 0;
 }
